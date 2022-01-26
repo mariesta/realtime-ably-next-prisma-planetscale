@@ -1,19 +1,35 @@
+import React, { useState } from 'react';
+
 import Head from 'next/head'
 import Image from 'next/image'
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import Button from '@mui/material/Button';
+
 import styles from '../styles/Home.module.css'
 import { useAbly } from "../ably";
 
+function Home() {
+  const [comments, setComments] = useState([]);
+  const [username, setUsername] = useState("");
+  const [comment, setComment] = useState("");
 
- function Home() {
    const [channel, ably] = useAbly("test", (message) => {
-     console.log(message)
+     setComments([...comments, message.data])
    });
 
-  const sendMessage = () => {
-    channel.publish('greeting', 'Hello from the browser');
+  const submitComment = () => {
+    channel.publish({
+      name: "comment",
+      data: {
+        username,
+        comment
+      }
+    });
+    setUsername("")
+    setComment("")
   }
-
-
 
   return (
     <div className={styles.container}>
@@ -23,7 +39,48 @@ import { useAbly } from "../ably";
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <button onClick={sendMessage}>Send message</button>
+      <Grid>
+      {
+        comments.length > 0 ? comments.map((comment) => {
+          return(
+            <div>{comment.comment} {comment.username}</div>
+          )
+        }):
+        <div>No comments at the moment</div>
+      }
+      </Grid>
+
+      <FormControl>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              required
+              id="username"
+              name="username"
+              label="Username"
+              variant="outlined"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              id="comment"
+              name="comment"
+              label="Comment"
+              variant="outlined"
+              multiline
+              maxRows={4}
+              value={comment}
+              onChange={(event) => setComment(event.target.value)}
+            />
+          </Grid>
+          <Grid item xs={12}>
+           <Button variant="contained" onClick={submitComment}>Submit</Button>
+          </Grid>
+        </Grid>
+      </FormControl>
 
       <footer className={styles.footer}>
         <a
