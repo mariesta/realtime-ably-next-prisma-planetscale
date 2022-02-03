@@ -36,10 +36,17 @@ const Home = ({ comments }) => {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/comment')
-  const comments = await res.json()
+  var props = {} ;
+  try {
+    const res = await fetch('http://localhost:3000/api/comment')
+    const comments = await res.json()
+    props = { comments }
+  } catch(err) {
+    console.log(err); // TypeError: failed to fetch
+  }
+
   return {
-    props: { comments },
+    props,
   }
 }
 
