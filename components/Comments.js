@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import CommentsList from './CommentsList';
 import AddCommentSection from './AddCommentSection';
 
-export default function Comments(props) {
-  const [comments, setComments] = useState(props.comments);
+export default function Comments({initialComments = []}) {
+  const [comments, setComments] = useState(initialComments);
 
    const [channel] = useAbly("comment-channel", (message) => {
      setComments([...comments, message.data])

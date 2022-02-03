@@ -26,7 +26,7 @@ const Home = ({ comments }) => {
             <Divider variant="middle" sx={{
               my: 3,
             }}/>
-            <Comments comments={comments}/>
+            <Comments initialComments={comments}/>
           </Grid>
         </Grid>
         <Footer/>
