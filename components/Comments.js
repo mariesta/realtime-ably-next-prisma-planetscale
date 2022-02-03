@@ -9,8 +9,7 @@ import AddCommentSection from './AddCommentSection';
 export default function Comments() {
   const [comments, setComments] = useState([]);
 
-
-   const [channel, ably] = useAbly("comment-channel", (message) => {
+   const [channel] = useAbly("comment-channel", (message) => {
      setComments([...comments, message.data])
    });
 
