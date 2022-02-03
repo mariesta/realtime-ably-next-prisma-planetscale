@@ -25,9 +25,9 @@ export default function CommentsList({ comments }) {
       sx={{ py: 2 }}
     >
     {
-      comments.map((comment) => {
+      comments.map((comment, index) => {
        return(
-         <CommentDetail comment={comment} />
+         <CommentDetail key={`comment-${index}`} comment={comment} />
        )
      })
     }
