@@ -6,21 +6,34 @@ import Typography from '@mui/material/Typography';
 import CommentsList from './CommentsList';
 import AddCommentSection from './AddCommentSection';
 
-export default function Comments() {
-  const [comments, setComments] = useState([]);
+export default function Comments(props) {
+  const [comments, setComments] = useState(props.comments);
 
    const [channel] = useAbly("comment-channel", (message) => {
      setComments([...comments, message.data])
    });
 
-  const submitComment = (username, comment) => {
-    channel.publish({
-      name: "comment",
-      data: {
-        username,
-        comment
-      }
-    });
+  const submitComment = async (username, comment) => {
+    try {
+      const body = { username, comment }
+      await fetch(`http://localhost:3000/api/comment`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+
+      // Upon creation, send the message to update other views
+      channel.publish({
+        name: "comment",
+        data: {
+          username,
+          comment
+        }
+      });
+    } catch (error) {
+      console.error("An error occurred creating a comment: ", error)
+    }
+
   }
 
   return (
