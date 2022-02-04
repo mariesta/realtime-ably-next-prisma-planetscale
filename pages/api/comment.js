@@ -3,14 +3,13 @@ import prisma from '../../lib/prisma'
 export default function handler(req, res) {
   switch (req.method) {
     case "GET":
-      handleGET(req, res);
-      break;
+      return handleGET(req, res);
     case "POST":
-      handlePOST(req, res);
-      break;
+      return handlePOST(req, res);
+    case "OPTIONS":
+      return res.status(200).send("ok")
     default:
-      res.status(405).end();
-      break;
+      return res.status(405).end();
   }
 }
 
