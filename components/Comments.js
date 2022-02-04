@@ -16,7 +16,7 @@ export default function Comments({initialComments = []}) {
   const submitComment = async (username, comment) => {
     try {
       const body = { username, comment }
-      await fetch(`http://localhost:3000/api/comment`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/comment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),

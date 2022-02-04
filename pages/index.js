@@ -38,7 +38,7 @@ const Home = ({ comments }) => {
 export const getServerSideProps = async () => {
   var props = {} ;
   try {
-    const res = await fetch('http://localhost:3000/api/comment')
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/comment`)
     const comments = await res.json()
     props = { comments }
   } catch(err) {
