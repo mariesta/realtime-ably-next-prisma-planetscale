@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 import Content from '../components/Content';
 import Comments from '../components/Comments';
 
-const Home = ({ comments }) => {
+const Home = ({ comments = [] }) => {
   return (
     <div>
       <CssBaseline />
@@ -33,21 +33,6 @@ const Home = ({ comments }) => {
       </Container>
     </div>
   )
-}
-
-export const getServerSideProps = async () => {
-  var props = {} ;
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/comment`)
-    const comments = await res.json()
-    props = { comments }
-  } catch(err) {
-    console.log(err);
-  }
-
-  return {
-    props,
-  }
 }
 
 export default Home;

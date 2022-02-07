@@ -5,15 +5,7 @@ import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 
-export default function AddCommentSection({submitComment}) {
-  const [username, setUsername] = useState("");
-  const [comment, setComment] = useState("");
-
-  const addComment = () => {
-    submitComment(username, comment);
-    setUsername("")
-    setComment("")
-  }
+export default function AddCommentSection() {
 
   return(
     <FormControl>
@@ -25,8 +17,8 @@ export default function AddCommentSection({submitComment}) {
             name="username"
             label="Username"
             variant="outlined"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            value={""}
+            onChange={(event) => console.log(event.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -38,12 +30,12 @@ export default function AddCommentSection({submitComment}) {
             variant="outlined"
             multiline
             rows={4}
-            value={comment}
-            onChange={(event) => setComment(event.target.value)}
+            value={""}
+            onChange={(event) => console.log(event.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
-         <Button variant="contained" onClick={addComment}>Submit</Button>
+         <Button variant="contained">Submit</Button>
         </Grid>
       </Grid>
     </FormControl>
