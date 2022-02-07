@@ -7,7 +7,7 @@ export default function handler(req, res) {
     case "POST":
       return handlePOST(req, res);
     case "OPTIONS":
-      return res.status(200).send("ok")
+      return res.status(200).send("ok");
     default:
       return res.status(405).end();
   }

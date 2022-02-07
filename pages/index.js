@@ -42,7 +42,7 @@ export const getServerSideProps = async () => {
     const comments = await res.json()
     props = { comments }
   } catch(err) {
-    console.log(err); // TypeError: failed to fetch
+    console.log(err);
   }
 
   return {
