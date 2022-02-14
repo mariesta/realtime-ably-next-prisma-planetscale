@@ -10,7 +10,10 @@ export default function AddCommentSection({submitComment}) {
   const [comment, setComment] = useState("");
 
   const addComment = () => {
-    submitComment(username, comment);
+    submitComment(username, comment, clearForm)
+  }
+
+  const clearForm = () => {
     setUsername("")
     setComment("")
   }

@@ -13,7 +13,7 @@ export default function Comments({initialComments = []}) {
      setComments([...comments, message.data])
    });
 
-  const submitComment = async (username, comment) => {
+  const submitComment = async (username, comment, clearForm) => {
     try {
       const body = { username, comment }
       await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/comment`, {
@@ -30,6 +30,7 @@ export default function Comments({initialComments = []}) {
           comment
         }
       });
+      clearForm();
     } catch (error) {
       console.error("An error occurred creating a comment: ", error)
     }
