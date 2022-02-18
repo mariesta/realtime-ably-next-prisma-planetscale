@@ -8,7 +8,7 @@ The project is hosted on Vercel and can be viewed live: [Live version](https://r
  - Prisma: JavaScript ORM to write queries
  - PlanetScale: a database-as-a-service offering free SQL databases
 
-## Running the project locally
+## Downloading the project locally
 
 First, you need to fork this project to your own repository. It is important to not overwrite any code in *this* repository.
 
