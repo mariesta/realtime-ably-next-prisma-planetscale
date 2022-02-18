@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAbly } from '../hooks/ably';
+import { useAbly } from '../hooks/useAbly';
 
 import Typography from '@mui/material/Typography';
 
