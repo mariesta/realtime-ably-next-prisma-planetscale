@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAbly } from '../hooks/useAbly';
+import { useChannel } from "@ably-labs/react-hooks";
 
 import Typography from '@mui/material/Typography';
 
@@ -9,7 +9,7 @@ import AddCommentSection from './AddCommentSection';
 export default function Comments({initialComments = []}) {
   const [comments, setComments] = useState(initialComments);
 
-   const [channel] = useAbly("comment-channel", (message) => {
+   const [channel] = useChannel("comment-channel", (message) => {
      setComments([...comments, message.data])
    });
 

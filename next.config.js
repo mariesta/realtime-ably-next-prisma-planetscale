@@ -1,4 +1,6 @@
-module.exports = {
+const withTM = require('next-transpile-modules')(['@ably-labs/react-hooks']);
+
+module.exports = withTM({
   reactStrictMode: true,
   async headers() {
     return [
@@ -14,4 +16,4 @@ module.exports = {
       }
     ]
   },
-}
+})
