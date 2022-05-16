@@ -10,7 +10,9 @@ export default function Comments({initialComments = []}) {
   const [comments, setComments] = useState(initialComments);
 
    const [channel] = useChannel("comment-channel", (message) => {
-     setComments([...comments, message.data])
+     setComments((comments) => {
+      return [...comments, message.data];
+    });
    });
 
   const submitComment = async (username, comment, clearForm) => {
